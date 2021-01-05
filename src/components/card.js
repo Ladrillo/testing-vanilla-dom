@@ -43,7 +43,7 @@ const CardAppender = async (selector) => {
   const res = await axios.get('https://www.lambdatimes.com/api/articles')
   const articles = Object.values(res.data.articles).flat()
   const container = document.querySelector(selector)
-  articles.forEach(article => container.append(Card(article)))
+  articles.forEach(article => container.append('foo'))
 }
 
 // Do not delete the lines below
