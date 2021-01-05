@@ -30,6 +30,16 @@ const Card = (article) => {
   return card
 }
 
+const CardAppender = (selector) => {
+  fetch('https://www.lambdatimes.com/api/articles')
+    .then(res => res.json())
+    .then(data => {
+      const articles = Object.values(data.articles).flat()
+      const container = document.querySelector(selector)
+      articles.forEach(article => container.append(Card(article)))
+    })
+}
+
 // const CardAppender = (selector) => {
 //   axios.get('https://www.lambdatimes.com/api/articles')
 //     .then(({ data }) => {
@@ -39,12 +49,12 @@ const Card = (article) => {
 //     })
 // }
 
-const CardAppender = async (selector) => {
-  const res = await axios.get('https://www.lambdatimes.com/api/articles')
-  const articles = Object.values(res.data.articles).flat()
-  const container = document.querySelector(selector)
-  articles.forEach(article => container.append(Card(article)))
-}
+// const CardAppender = async (selector) => {
+//   const res = await axios.get('https://www.lambdatimes.com/api/articles')
+//   const articles = Object.values(res.data.articles).flat()
+//   const container = document.querySelector(selector)
+//   articles.forEach(article => container.append(Card(article)))
+// }
 
 // Do not delete the lines below
 export { Card }
