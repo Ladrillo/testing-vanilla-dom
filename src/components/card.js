@@ -19,7 +19,7 @@ const Card = (article) => {
   author.classList.add('author')
   imgContainer.classList.add('img-container')
 
-  headline.textContent = article.headline
+  headline.innerText = article.headline
   image.src = article.authorPhoto
   authorName.textContent = `By ${article.authorName}`
 
@@ -43,7 +43,7 @@ const CardAppender = async (selector) => {
   const res = await axios.get('https://www.lambdatimes.com/api/articles')
   const articles = Object.values(res.data.articles).flat()
   const container = document.querySelector(selector)
-  articles.forEach(article => container.append('foo'))
+  articles.forEach(article => container.append(Card(article)))
 }
 
 // Do not delete the lines below
