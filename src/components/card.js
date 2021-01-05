@@ -19,7 +19,7 @@ const Card = (article) => {
   author.classList.add('author')
   imgContainer.classList.add('img-container')
 
-  headline.innerText = article.headline
+  headline.textContent = article.headline
   image.src = article.authorPhoto
   authorName.textContent = `By ${article.authorName}`
 
