@@ -31,7 +31,7 @@ const Card = (article) => {
   return card
 }
 
-// const CardAppender = (selector) => {
+// const cardAppender = (selector) => {
 //   fetch('https://lambda-times-api.herokuapp.com/articles')
 //     .then(res => res.json())
 //     .then(data => {
@@ -41,7 +41,7 @@ const Card = (article) => {
 //     })
 // }
 
-// const CardAppender = (selector) => {
+// const cardAppender = (selector) => {
 //   axios.get('https://lambda-times-api.herokuapp.com/articles')
 //     .then(({ data }) => {
 //       const articles = Object.values(data.articles).flat()
@@ -50,7 +50,7 @@ const Card = (article) => {
 //     })
 // }
 
-const CardAppender = async (selector) => {
+const cardAppender = async (selector) => {
   const res = await axios.get('https://lambda-times-api.herokuapp.com/articles')
   const articles = Object.values(res.data.articles).flat()
   const container = document.querySelector(selector)
@@ -59,4 +59,4 @@ const CardAppender = async (selector) => {
 
 // Do not delete the lines below
 export { Card }
-export { CardAppender }
+export { cardAppender }

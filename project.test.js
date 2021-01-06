@@ -6,11 +6,14 @@ globalThis.fetch = fetch
 
 import { screen, queries } from '@testing-library/dom'
 import { server } from './src/mocks/server'
-import { Card, CardAppender } from './src/components/card'
+import { Card, cardAppender } from './src/components/card'
 import { articles } from './src/mocks/data'
 
-const flattened = Object.values(articles.articles).flat()
-const headlines = flattened.map(article => article.headline)
+const bootstrap = Object.values(articles.articles.bootstrap).flat()
+const javascript = Object.values(articles.articles.javascript).flat()
+const jquery = Object.values(articles.articles.jquery).flat()
+const node = Object.values(articles.articles.node).flat()
+const technology = Object.values(articles.articles.technology).flat()
 
 beforeAll(() => server.listen())
 afterEach(() => {
@@ -19,15 +22,46 @@ afterEach(() => {
 })
 afterAll(() => server.close())
 
-test('Card', async () => {
-  const card = Card(flattened[0])
-  expect(queries.getByText(card, 'ES8: The Next Step in the Evolution of Javascript and What it Means For Your Projects'))
-  expect(queries.getByText(card, 'By SIR RUFF\'N\'STUFF'))
+describe('Card', () => {
+  it('builds a card with the correct visible text', async () => {
+    const card = Card(javascript[0])
+    expect(queries.getByText(card, /The Next Step in the Evolution/i))
+    expect(queries.getByText(card, /SIR RUFF/i))
+  })
 })
 
-test('CardAppender', async () => {
-  CardAppender('body')
-  for (let i = 0; i < headlines.length; i++) {
-    expect(await screen.findByText(headlines[i])).toBeInTheDocument()
-  }
+describe('cardAppender', () => {
+  beforeEach(() => {
+    cardAppender('body')
+  })
+  it('appends the bootstrap articles', async () => {
+    const headlines = bootstrap.map(art => art.headline)
+    for (let i = 0; i < headlines.length; i++) {
+      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
+    }
+  })
+  it('appends the javascript articles', async () => {
+    const headlines = javascript.map(art => art.headline)
+    for (let i = 0; i < headlines.length; i++) {
+      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
+    }
+  })
+  it('appends the jquery articles', async () => {
+    const headlines = jquery.map(art => art.headline)
+    for (let i = 0; i < headlines.length; i++) {
+      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
+    }
+  })
+  it('appends the node articles', async () => {
+    const headlines = node.map(art => art.headline)
+    for (let i = 0; i < headlines.length; i++) {
+      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
+    }
+  })
+  it('appends the technology articles', async () => {
+    const headlines = technology.map(art => art.headline)
+    for (let i = 0; i < headlines.length; i++) {
+      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
+    }
+  })
 })
