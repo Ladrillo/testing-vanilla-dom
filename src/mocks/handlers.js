@@ -18,6 +18,6 @@ function getArticles(req, res, ctx) {
 }
 
 export const handlers = [
-  rest.get('https://www.lambdatimes.com/api/articles', getArticles),
-  rest.get('https://www.lambdatimes.com/api/topics', getTopics),
+  rest.get('https://lambda-times-api.herokuapp.com/articles', getArticles),
+  rest.get('https://lambda-times-api.herokuapp.com/topics', getTopics),
 ]
