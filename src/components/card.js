@@ -54,7 +54,7 @@ const cardAppender = async (selector) => {
   const res = await axios.get('https://lambda-times-api.herokuapp.com/articles')
   const articles = Object.values(res.data.articles).flat()
   const container = document.querySelector(selector)
-  articles.forEach(article => container.append(Card(article)))
+  articles.forEach(article => container.appendChild(Card(article)))
 }
 
 // Do not delete the lines below
