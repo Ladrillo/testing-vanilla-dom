@@ -16,10 +16,6 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 
 [Lambda Times](https://tk-assets.lambdaschool.com/cac4803c-6e8f-4846-be0e-b20d82a34a73_lambda-times.png)
 
-### Commits
-
-Commit your code regularly and meaningfully. This helps both you (in case you ever need to return to old code for any number of reasons) and your team lead as the evaluate your solution.
-
 ## Instructions
 
 ### A - Project Set Up
@@ -51,7 +47,7 @@ Your must complete all of the following steps:
 **Notes:**
 
 - Please **do not move or rename existing files** or folders.
-- Do not alter your `package.json` file except for installing additional libraries.
+- Do not alter your `package.json` file except for installing additional libraries if needed.
 - In your solution, it is essential that you follow best practices and produce clean and professional results.
 - Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work.
 - It is better to submit a challenge that meets MVP than one that attempts too much and does not.
