@@ -93,3 +93,15 @@ describe('Header', () => {
     expect(header.querySelector('span.temp').textContent).toMatch(/baz/i)
   })
 })
+
+describe('headerAppender', () => {
+  beforeEach(() => {
+    headerAppender('body')
+  })
+
+  it('appends the header to the DOM', () => {
+    expect(document.querySelector('div.header>h1').textContent).toBeTruthy()
+    expect(document.querySelector('span.date').textContent).toBeTruthy()
+    expect(document.querySelector('span.temp').textContent).toBeTruthy()
+  })
+})
