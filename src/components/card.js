@@ -1,29 +1,24 @@
-// STEP 3: Create article cards.
-// -----------------------
-// Send an HTTP GET request to the following address: https://lambda-times-api.herokuapp.com/articles
-// Study the response data you get back, closely.
-// You will be creating a card for each article in the response.
-// This won't be as easy as just iterating over an array though.
-//
-// Write a Card function that takes a single article object and returns the following markup:
-//
-// <div class="card">
-//   <div class="headline">{headline of article}</div>
-//   <div class="author">
-//     <div class="img-container">
-//       <img src={url of authors image}>
-//     </div>
-//     <span>By {author's name}</span>
-//   </div>
-// </div>
-//
-// Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
-//
-// Use your function to create a card for each of the articles, and append each card to the DOM.
 import axios from 'axios'
 
 const Card = (article) => {
-  // Must use .textContent instead of .innerText!
+  // TASK 5
+  // ---------------------
+  // Implement this function, which should return the markup you see below.
+  // It takes as its only argument an "article" object with `headline`, `authorPhoto` and `authorName` properties.
+  // The tags used, the hierarchy of elements and their attributes must match the provided markup exactly!
+  // The text inside elements will be set using their `textContent` property (NOT `innerText`).
+  // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
+  //
+  // <div class="card">
+  //   <div class="headline">{ headline }</div>
+  //   <div class="author">
+  //     <div class="img-container">
+  //       <img src={ authorPhoto }>
+  //     </div>
+  //     <span>By { authorName }</span>
+  //   </div>
+  // </div>
+  //
   const card = document.createElement('div')
   const headline = document.createElement('div')
   const author = document.createElement('div')
@@ -73,11 +68,18 @@ const Card = (article) => {
 // }
 
 const cardAppender = async (selector) => {
+  // TASK 6
+  // ---------------------
+  // Implement this function that takes a css selector as its only argument.
+  // It should obtain articles from this endpoint: `https://lambda-times-api.herokuapp.com/articles`
+  // However, the articles do not arrive organized in a single, neat array. Inspect the response closely!
+  // Using all articles in the response build a card from each one, using the Card component.
+  // Append each card to the element in the DOM that matches the selector passed to the function.
+  //
   const res = await axios.get('https://lambda-times-api.herokuapp.com/articles')
   const articles = Object.values(res.data.articles).flat()
   const container = document.querySelector(selector)
   articles.forEach(article => container.appendChild(Card(article)))
 }
 
-// Do not delete the lines below
 export { Card, cardAppender }
