@@ -4,7 +4,7 @@ This is the solution repository for `https://github.com/LambdaSchool/web-sprint-
 
 If you make changes, make sure that all tests are passing in your local, and that you upload to Codegrade any fixtures that suffered changes.
 
-The latest version of `msw` (0.25.0 at this time) causes a crash in the console. Check before bumping the version.
+The latest version of `msw` (0.25.0 at this time) causes a crash in the console. Check before upgrading to a version newer than 0.24.4.
 
 ## Setup
 
