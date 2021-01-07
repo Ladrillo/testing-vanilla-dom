@@ -17,11 +17,38 @@ const node = Object.values(articles.articles.node).flat()
 const technology = Object.values(articles.articles.technology).flat()
 
 beforeAll(() => server.listen())
+afterAll(() => server.close())
 afterEach(() => {
   server.resetHandlers()
   document.body.innerHTML = ''
 })
-afterAll(() => server.close())
+
+describe('Header', () => {
+  let header
+  beforeEach(() => {
+    header = Header('foo', 'bar', 'baz')
+  })
+  it('returns a header with the correct heading (element, attrs and text)', () => {
+    expect(header.querySelector('div.header>h1').textContent).toMatch(/foo/i)
+  })
+  it('returns a header with the correct date (element, attrs and text)', () => {
+    expect(header.querySelector('div.header>span.date').textContent).toMatch(/bar/i)
+  })
+  it('returns a header with the correct temperature (element, attrs and text)', () => {
+    expect(header.querySelector('div.header>span.temp').textContent).toMatch(/baz/i)
+  })
+})
+
+describe('headerAppender', () => {
+  beforeEach(() => {
+    headerAppender('body')
+  })
+  it('appends the header to the DOM', () => {
+    expect(document.querySelector('.header>h1')).toBeTruthy()
+    expect(document.querySelector('.header>.date')).toBeTruthy()
+    expect(document.querySelector('.header>.temp')).toBeTruthy()
+  })
+})
 
 describe('Card', () => {
   let card
@@ -75,33 +102,5 @@ describe('cardAppender', () => {
     for (let i = 0; i < headlines.length; i++) {
       expect(await screen.findByText(headlines[i])).toBeInTheDocument()
     }
-  })
-})
-
-describe('Header', () => {
-  let header
-  beforeEach(() => {
-    header = Header('foo', 'bar', 'baz')
-  })
-  it('returns a header with the correct heading (element, attrs and text)', () => {
-    expect(header.querySelector('div.header>h1').textContent).toMatch(/foo/i)
-  })
-  it('returns a header with the correct date (element, attrs and text)', () => {
-    expect(header.querySelector('span.date').textContent).toMatch(/bar/i)
-  })
-  it('returns a header with the correct temperature (element, attrs and text)', () => {
-    expect(header.querySelector('span.temp').textContent).toMatch(/baz/i)
-  })
-})
-
-describe('headerAppender', () => {
-  beforeEach(() => {
-    headerAppender('body')
-  })
-
-  it('appends the header to the DOM', () => {
-    expect(document.querySelector('div.header>h1').textContent).toBeTruthy()
-    expect(document.querySelector('span.date').textContent).toBeTruthy()
-    expect(document.querySelector('span.temp').textContent).toBeTruthy()
   })
 })
