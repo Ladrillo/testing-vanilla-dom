@@ -10,12 +10,6 @@ import { Card, cardAppender } from './src/components/card'
 import { Header, headerAppender } from './src/components/header'
 import { articles } from './src/mocks/data'
 
-const bootstrap = Object.values(articles.articles.bootstrap).flat()
-const javascript = Object.values(articles.articles.javascript).flat()
-const jquery = Object.values(articles.articles.jquery).flat()
-const node = Object.values(articles.articles.node).flat()
-const technology = Object.values(articles.articles.technology).flat()
-
 beforeAll(() => server.listen())
 afterAll(() => server.close())
 afterEach(() => {
@@ -23,7 +17,7 @@ afterEach(() => {
   document.body.innerHTML = ''
 })
 
-describe('Header', () => {
+describe('TASK 1 - Header', () => {
   let header
   beforeEach(() => {
     header = Header('foo', 'bar', 'baz')
@@ -39,7 +33,7 @@ describe('Header', () => {
   })
 })
 
-describe('headerAppender', () => {
+describe('TASK 2 - headerAppender', () => {
   beforeEach(() => {
     headerAppender('body')
   })
@@ -50,10 +44,10 @@ describe('headerAppender', () => {
   })
 })
 
-describe('Card', () => {
+describe('TASK 5 - Card', () => {
   let card
   beforeEach(() => {
-    card = Card(javascript[0])
+    card = Card(articles.articles.javascript[0])
   })
   it('returns a card with the correct headline (element, attrs and text)', () => {
     expect(card.querySelector('div.card>div.headline').textContent)
@@ -65,40 +59,17 @@ describe('Card', () => {
   })
   it('returns a card with the correct image (element and src)', () => {
     expect(card.querySelector('div.card>div.author>div.img-container>img').src)
-      .toBe(javascript[0].authorPhoto)
+      .toBe(articles.articles.javascript[0].authorPhoto)
   })
 })
 
-describe('cardAppender', () => {
+describe('TASK 6 - cardAppender', () => {
+  let flattened = Object.values(articles.articles).flat()
   beforeEach(() => {
     cardAppender('body')
   })
-  it('appends the bootstrap articles', async () => {
-    const headlines = bootstrap.map(art => art.headline)
-    for (let i = 0; i < headlines.length; i++) {
-      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
-    }
-  })
-  it('appends the javascript articles', async () => {
-    const headlines = javascript.map(art => art.headline)
-    for (let i = 0; i < headlines.length; i++) {
-      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
-    }
-  })
-  it('appends the jquery articles', async () => {
-    const headlines = jquery.map(art => art.headline)
-    for (let i = 0; i < headlines.length; i++) {
-      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
-    }
-  })
-  it('appends the node articles', async () => {
-    const headlines = node.map(art => art.headline)
-    for (let i = 0; i < headlines.length; i++) {
-      expect(await screen.findByText(headlines[i])).toBeInTheDocument()
-    }
-  })
-  it('appends the technology articles', async () => {
-    const headlines = technology.map(art => art.headline)
+  it('appends all the articles', async () => {
+    const headlines = flattened.map(art => art.headline)
     for (let i = 0; i < headlines.length; i++) {
       expect(await screen.findByText(headlines[i])).toBeInTheDocument()
     }

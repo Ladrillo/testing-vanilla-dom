@@ -1,7 +1,12 @@
 import axios from 'axios'
 
+// <div class="topics">
+//   <div class="tab">javascript</div>
+//   <div class="tab">bootstrap</div>
+//   <div class="tab">technology</div>
+// </div>
+
 const Tabs = (topics) => {
-  // Must use .textContent instead of .innerText!
   const container = document.createElement('div')
   container.classList.add('topics')
   topics.forEach(topic => {
