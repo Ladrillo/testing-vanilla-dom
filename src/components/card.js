@@ -11,7 +11,7 @@
 //   <div class="headline">{headline of article}</div>
 //   <div class="author">
 //     <div class="img-container">
-//       <img src={url of authors image} />
+//       <img src={url of authors image}>
 //     </div>
 //     <span>By {author's name}</span>
 //   </div>

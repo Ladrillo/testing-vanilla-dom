@@ -1,40 +1,43 @@
-// STEP 1: Create a Header component.
-// -----------------------
-// Write a function that takes no arguments and returns the markup you see below:
-//
-//  <div class='header'>
-//    <span class='date'>MARCH 28, 2020</span>
-//    <h1>Lambda Times</h1>
-//    <span class='temp'>98°</span>
-//  </div>
-//
-// Use your function to create a header
-// and append it to the DOM inside the div.header-container
+const Header = (title, date, temp) => {
+  // STEP 1
+  // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
+  // The tags used, hierarchy of the elements and their attributes must match exactly.
+  // The text inside elements will be set using their `textContent` property (NOT `innerText`).
+  //
+  //  <div class="header">
+  //    <span class="date">{ date }</span>
+  //    <h1>{ title }</h1>
+  //    <span class="temp">{ temp }</span>
+  //  </div>
+  //
+  const headerElem = document.createElement('div')
+  const dateElem = document.createElement('span')
+  const titleElem = document.createElement('h1')
+  const tempElem = document.createElement('span')
 
-const Header = () => {
-  // Must use .textContent instead of .innerText!
-  const header = document.createElement('div')
-  const date = document.createElement('span')
-  const title = document.createElement('h1')
-  const temp = document.createElement('span')
+  headerElem.appendChild(dateElem)
+  headerElem.appendChild(titleElem)
+  headerElem.appendChild(tempElem)
 
-  header.appendChild(date)
-  header.appendChild(title)
-  header.appendChild(temp)
+  headerElem.classList.add('header')
+  dateElem.classList.add('date')
+  tempElem.classList.add('temp')
 
-  header.classList.add('header')
-  date.classList.add('date')
-  temp.classList.add('temp')
+  dateElem.textContent = date
+  titleElem.textContent = title
+  tempElem.textContent = temp
 
-  date.textContent = 'MARCH 28, 2020'
-  title.textContent = 'Lambda Times'
-  temp.textContent = '98°'
-
-  return header
+  return headerElem
 }
 
-const headerAppender = async (selector) => {
-  document.querySelector(selector).appendChild(Header())
+const headerAppender = (selector) => {
+  // STEP 2
+  // Implement this function taking a css selector as its only argument.
+  // It should create a header using the Header component above, passing arguments of your choosing.
+  // It should append the header to the element in the DOM that matches the given selector.
+  //
+  document.querySelector(selector)
+    .appendChild(Header('Lambda Times', 'JANUARY 6, 2021', '26°'))
 }
 
 export { Header, headerAppender }
